@@ -12,3 +12,4 @@ test: test.o ../lib/BitMap.o
 
 clean:
 	rm -rf *.o
+	rm test
