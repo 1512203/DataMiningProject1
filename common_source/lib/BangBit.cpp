@@ -52,8 +52,17 @@ namespace NguyenQuocHuy {
         this->soCot = slCot;
         this->soByteMotDong = tinhSoBlockBietSoBit(slCot);
         this->soByteChoBang = tinhSoByteChoBang(this->soByteMotDong, slDong);
-        this->duLieu = new tblock[ soByteChoBang ];
-        memset(this->duLieu, 0, sizeof(this->soByteChoBang));
+        this->duLieu = new tblock[ this->soByteChoBang ];
+        memset(this->duLieu, 0, this->soByteChoBang * sizeof(tblock));
+    }
+
+    BangBit::BangBit(const BangBit &other) {
+        this->soDong = other.soDong;
+        this->soCot = other.soCot;
+        this->soByteMotDong = other.soByteMotDong;
+        this->soByteChoBang = other.soByteChoBang;
+        this->duLieu = new tblock[ this->soByteChoBang ];
+        memcpy(this->duLieu, other.duLieu, this->soByteChoBang * sizeof(tblock));
     }
 
     int BangBit::laySoDong() const {

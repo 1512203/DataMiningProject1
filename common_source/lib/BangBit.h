@@ -26,6 +26,7 @@ namespace NguyenQuocHuy {
 
     public:
         BangBit(int slDong, int slCot);
+        BangBit(const BangBit &other);
         
         int laySoDong() const;
         int laySoCot() const;
