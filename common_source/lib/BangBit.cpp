@@ -65,6 +65,16 @@ namespace NguyenQuocHuy {
         memcpy(this->duLieu, other.duLieu, this->soByteChoBang * sizeof(tblock));
     }
 
+    void BangBit::operator = (const BangBit &other) {
+        delete[] this->duLieu;
+        this->soDong = other.soDong;
+        this->soCot = other.soCot;
+        this->soByteMotDong = other.soByteMotDong;
+        this->soByteChoBang = other.soByteChoBang;
+        this->duLieu = new tblock[ this->soByteChoBang ];
+        memcpy(this->duLieu, other.duLieu, this->soByteChoBang * sizeof(tblock));
+    }
+
     int BangBit::laySoDong() const {
         return this->soDong;
     }

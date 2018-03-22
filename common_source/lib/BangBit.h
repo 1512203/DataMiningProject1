@@ -36,6 +36,8 @@ namespace NguyenQuocHuy {
 
         BangBit layANDCuaCacDong(int slDong, ...);
 
+        void operator = (const BangBit &other);
+
         ~BangBit();
     };
 };
