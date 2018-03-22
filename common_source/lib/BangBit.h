@@ -1,6 +1,8 @@
 #ifndef BITMAP_INCLUDED
 #define BITMAP_INCLUDED
 
+#include <cstdarg>
+
 namespace NguyenQuocHuy {
     class BangBit {
     private:
@@ -13,6 +15,7 @@ namespace NguyenQuocHuy {
         static int tinhViTriCuaOTrongBlock(int dong, int cot);
         static int layMotBitCuaMotPhanTuCuaMang(const tblock* mang, int chiSoPhanTu, int chiSoBit);
         static void ganMotBitChoMotPhanTuCuaMang(tblock* mang, int chiSoPhanTu, int chiSoBit, int giaTri);
+        static void ANDMangVoiMang(tblock* mang_1, const tblock* mang_2, int slPhanTu);
 
     protected:
         int soDong;
@@ -29,6 +32,8 @@ namespace NguyenQuocHuy {
 
         int layO(int dong, int cot) const;
         void ganO(int dong, int cot, int giaTri);
+
+        BangBit layANDCuaCacDong(int slDong, ...);
 
         ~BangBit();
     };

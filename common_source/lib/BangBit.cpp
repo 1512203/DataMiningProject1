@@ -35,6 +35,12 @@ namespace NguyenQuocHuy {
     	mang [ chiSoPhanTu ] ^= (giaTri << chiSoBit);
     }
 
+    void BangBit::ANDMangVoiMang(tblock* mang_1, const tblock* mang_2, int slPhanTu) {
+    	for (int i = 0; i < slPhanTu; ++i) {
+    		mang_1[i] &= mang_2[i];
+    	}
+    }
+
 	/*	---------- ############## ----------  */
 
 
@@ -68,6 +74,19 @@ namespace NguyenQuocHuy {
 		int viTriCuaOTrenMang = tinhVitriCuaOTrenMang(dong, cot, this->soByteMotDong);
 		int viTriCuaOTrongBlock = tinhViTriCuaOTrongBlock(dong, cot);
 		ganMotBitChoMotPhanTuCuaMang(this->duLieu, viTriCuaOTrenMang, viTriCuaOTrongBlock, giaTri);
+	}
+
+	BangBit BangBit::layANDCuaCacDong(int slDong, ...) {
+		BangBit ketQua(1, this->soDong);
+		va_list vl;
+		va_start(vl, slDong);
+		for (int i = 0; i < slDong; ++i) {
+			int dong = va_arg(vl, int);
+			int chiSoMangCuaPhanTuDauDong = tinhSoByteChoBang(this->soByteMotDong, dong);
+			ANDMangVoiMang(ketQua.duLieu, this->duLieu + chiSoMangCuaPhanTuDauDong, this->soByteMotDong);
+		}
+		va_end(vl);
+		return ketQua;
 	}
 
 	BangBit::~BangBit() {
