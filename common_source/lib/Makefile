@@ -5,8 +5,8 @@ all: BangBit.o
 
 
 BangBit.o: BangBit.cpp BangBit.h
-	$(CC) $(CFLAGS) BangBit.cpp
+    $(CC) $(CFLAGS) BangBit.cpp
 
 clean:
-	rm -rf *.o
-	rm -rf *.h.gch
+    rm -rf *.o
+    rm -rf *.h.gch
