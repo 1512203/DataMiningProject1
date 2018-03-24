@@ -12,4 +12,6 @@ test: test.o ../lib/BangBit.o ../lib/CSDLNhiPhan.o
 
 clean:
 	rm -rf *.o
-	rm test
+	rm -f test
+	rm -f result.txt
+
