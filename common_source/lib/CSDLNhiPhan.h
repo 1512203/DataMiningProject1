@@ -8,7 +8,7 @@
 namespace NguyenQuocHuy {
     class CSDLNhiPhan {
     private:
-    	static std::vector<std::string> tachChuoiDungDelimiter(std::string s, char delim);
+        static std::vector<std::string> tachChuoiDungDelimiter(std::string s, char delim);
     protected:
         void docMetaData(const char* metaDataFileName);
         void docData(const char* dataFileName);
@@ -19,16 +19,16 @@ namespace NguyenQuocHuy {
         int soTransaction;
         double minSup; // min supply
         double minConf; // min confident
-    	BangBit* csdl;
-    	std::vector<std::string> tenItem;
+        BangBit* csdl;
+        std::vector<std::string> tenItem;
     public:
-    	CSDLNhiPhan(const std::string &dataFileName, const std::string &metaDataFileName);
-    	CSDLNhiPhan(const CSDLNhiPhan &other);
+        CSDLNhiPhan(const std::string &dataFileName, const std::string &metaDataFileName);
+        CSDLNhiPhan(const CSDLNhiPhan &other);
         void operator = (const CSDLNhiPhan &other);
 
         std::vector< std::vector<std::string> > thuatToanApriori();
 
-    	~CSDLNhiPhan();
+        ~CSDLNhiPhan();
 
     };
 };

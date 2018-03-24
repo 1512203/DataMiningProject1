@@ -9,22 +9,22 @@
 namespace NguyenQuocHuy {
     /*  ---------- Static methods ---------- */
 
-	std::vector<std::string> CSDLNhiPhan::tachChuoiDungDelimiter(std::string s, char delim) {
-		std::vector<std::string> ketQua;
-		std::string token = "";
-		
-		s += delim;
-		
-		for (int i = 0, n = s.length(); i < n; ++i) 
-			if (s[i] == delim) {
-				if (token.length() > 0) 
-					ketQua.push_back(token);
-				token = "";
-			}
-			else 
-				token += s[i];
-		return ketQua;
-	}
+    std::vector<std::string> CSDLNhiPhan::tachChuoiDungDelimiter(std::string s, char delim) {
+        std::vector<std::string> ketQua;
+        std::string token = "";
+        
+        s += delim;
+        
+        for (int i = 0, n = s.length(); i < n; ++i) 
+            if (s[i] == delim) {
+                if (token.length() > 0) 
+                    ketQua.push_back(token);
+                token = "";
+            }
+            else 
+                token += s[i];
+        return ketQua;
+    }
 
     /*  ------------------------------------ */
 
@@ -65,10 +65,10 @@ namespace NguyenQuocHuy {
         return soTransactionChuaDanhSachItem >= (this->minSup / 100.0) * this->soTransaction;
     }
 
-	CSDLNhiPhan::CSDLNhiPhan(const std::string &dataFileName, const std::string &metaDataFileName) {
+    CSDLNhiPhan::CSDLNhiPhan(const std::string &dataFileName, const std::string &metaDataFileName) {
         this->docMetaData(metaDataFileName.c_str());
         this->docData(dataFileName.c_str());
-	}
+    }
 
     std::vector<std::string> CSDLNhiPhan::layDanhSachTen(const std::vector<int> &danhSachItem) const {
         std::vector<std::string> ketQua;
@@ -96,9 +96,9 @@ namespace NguyenQuocHuy {
         this->csdl = new BangBit(*other.csdl);
     }
 
-	CSDLNhiPhan::~CSDLNhiPhan() {
+    CSDLNhiPhan::~CSDLNhiPhan() {
         delete this->csdl;
-	}
+    }
 
 
     std::vector< std::vector<std::string> > CSDLNhiPhan::thuatToanApriori() {
