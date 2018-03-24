@@ -21,6 +21,9 @@ namespace NguyenQuocHuy {
     public:
     	CSDLNhiPhan(const std::string &dataFileName, const std::string &metaDataFileName);
     	CSDLNhiPhan(const CSDLNhiPhan &other);
+
+        void operator = (const CSDLNhiPhan &other);
+
     	~CSDLNhiPhan();
     };
 };

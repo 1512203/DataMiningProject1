@@ -1,8 +1,6 @@
 #ifndef BITMAP_INCLUDED
 #define BITMAP_INCLUDED
 
-#include <cstdarg>
-
 namespace NguyenQuocHuy {
     class BangBit {
     private:
@@ -34,7 +32,7 @@ namespace NguyenQuocHuy {
         int layO(int dong, int cot) const;
         void ganO(int dong, int cot, int giaTri);
 
-        BangBit layANDCuaCacDong(int slDong, ...);
+        BangBit layANDCuaCacDong(int slDong, int* danhSachDong); 
 
         void operator = (const BangBit &other);
 

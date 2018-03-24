@@ -73,6 +73,16 @@ namespace NguyenQuocHuy {
         this->csdl = new BangBit(*other.csdl);
     }
 
+    void CSDLNhiPhan::operator = (const CSDLNhiPhan &other) {
+        delete this->csdl;
+        this->soItem = other.soItem;
+        this->soTransaction = other.soTransaction;
+        this->minSup = other.minSup;
+        this->minConf = other.minConf;
+        this->tenThuocTinh = other.tenThuocTinh;
+        this->csdl = new BangBit(*other.csdl);
+    }
+
 	CSDLNhiPhan::~CSDLNhiPhan() {
         delete this->csdl;
 	}

@@ -96,16 +96,13 @@ namespace NguyenQuocHuy {
         ganMotBitChoMotPhanTuCuaMang(this->duLieu, viTriCuaOTrenMang, viTriCuaOTrongBlock, giaTri);
     }
 
-    BangBit BangBit::layANDCuaCacDong(int slDong, ...) {
+    BangBit BangBit::layANDCuaCacDong(int slDong, int* danhSachDong) {
         BangBit ketQua(1, this->soDong);
-        va_list vl;
-        va_start(vl, slDong);
         for (int i = 0; i < slDong; ++i) {
-            int dong = va_arg(vl, int);
+            int dong = danhSachDong[i];
             int chiSoMangCuaPhanTuDauDong = tinhSoByteChoBang(this->soByteMotDong, dong);
             ANDMangVoiMang(ketQua.duLieu, this->duLieu + chiSoMangCuaPhanTuDauDong, this->soByteMotDong);
         }
-        va_end(vl);
         return ketQua;
     }
 
