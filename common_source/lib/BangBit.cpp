@@ -1,6 +1,7 @@
 #include "BangBit.h"
 #include <new>
 #include <cstring>
+#include <cstdarg>
 
 namespace NguyenQuocHuy {
     /*    ---------- Static members ----------  */
