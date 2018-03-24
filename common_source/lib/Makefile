@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-c -Wall -O2
+CFLAGS=-c -Wall -O2 -std=gnu++11
 
 all: BangBit.o CSDLNhiPhan.o
 	

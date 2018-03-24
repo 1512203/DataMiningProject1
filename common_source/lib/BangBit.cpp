@@ -3,6 +3,8 @@
 #include <cstring>
 #include <cstdarg>
 
+#include <cstdio>
+
 namespace NguyenQuocHuy {
     /*    ---------- Static members ----------  */
 
@@ -96,8 +98,18 @@ namespace NguyenQuocHuy {
         ganMotBitChoMotPhanTuCuaMang(this->duLieu, viTriCuaOTrenMang, viTriCuaOTrongBlock, giaTri);
     }
 
-    BangBit BangBit::layANDCuaCacDong(int slDong, int* danhSachDong) {
-        BangBit ketQua(1, this->soDong);
+    int BangBit::demSoBit1() const {
+        int res = 0;
+        for (int i = 0; i < this->soByteChoBang; ++i) {
+            res += __builtin_popcount(this->duLieu[i]);
+        }
+        return res;
+    }
+
+    BangBit BangBit::layANDCuaCacDong(int slDong, const int* danhSachDong) {
+        BangBit ketQua(1, this->soCot);
+        for (int i = 0; i < this->soCot; ++i) 
+            ketQua.ganO(0, i, 1);
         for (int i = 0; i < slDong; ++i) {
             int dong = danhSachDong[i];
             int chiSoMangCuaPhanTuDauDong = tinhSoByteChoBang(this->soByteMotDong, dong);

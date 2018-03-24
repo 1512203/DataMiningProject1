@@ -2,6 +2,7 @@
 #include <new>
 #include <string>
 #include <vector>
+#include <set>
 #include <iostream>
 #include <fstream>
 
@@ -32,10 +33,7 @@ namespace NguyenQuocHuy {
 
     void CSDLNhiPhan::docMetaData(const char* metaDataFileName) {
         std::ifstream fi(metaDataFileName, std::ifstream::in);
-        std::cout << fi.is_open() << std::endl;
-        std::cout << metaDataFileName << std::endl;
         fi >> this->soTransaction >> this->soItem >> this->minSup >> this->minConf;
-        std::cout << this->soItem << " " << this->soTransaction << std::endl;
         this->csdl = new BangBit(this->soItem, this->soTransaction);
         fi.close();
     }
@@ -46,7 +44,7 @@ namespace NguyenQuocHuy {
         std::vector<std::string> motTransaction;
 
         std::getline(fi, buff);
-        this->tenThuocTinh = tachChuoiDungDelimiter(buff, ',');
+        this->tenItem = tachChuoiDungDelimiter(buff, ',');
 
         for (int tid = 0; tid < this->soTransaction; ++tid) {
             std::getline(fi, buff);
@@ -59,17 +57,32 @@ namespace NguyenQuocHuy {
         fi.close();
     }
 
+    bool CSDLNhiPhan::kiemTraSuPhoBien(const std::vector<int> &danhSachItem) const {
+        int soTransactionChuaDanhSachItem = this
+                                            ->csdl
+                                            ->layANDCuaCacDong(danhSachItem.size(), danhSachItem.data())
+                                            .demSoBit1(); 
+        return soTransactionChuaDanhSachItem >= (this->minSup / 100.0) * this->soTransaction;
+    }
+
 	CSDLNhiPhan::CSDLNhiPhan(const std::string &dataFileName, const std::string &metaDataFileName) {
         this->docMetaData(metaDataFileName.c_str());
         this->docData(dataFileName.c_str());
 	}
+
+    std::vector<std::string> CSDLNhiPhan::layDanhSachTen(const std::vector<int> &danhSachItem) const {
+        std::vector<std::string> ketQua;
+        for (int i = 0, sz = danhSachItem.size(); i < sz; ++i)
+            ketQua.push_back(this->tenItem[danhSachItem[i]]);
+        return ketQua;
+    }
 
     CSDLNhiPhan::CSDLNhiPhan(const CSDLNhiPhan &other) {
         this->soItem = other.soItem;
         this->soTransaction = other.soTransaction;
         this->minSup = other.minSup;
         this->minConf = other.minConf;
-        this->tenThuocTinh = other.tenThuocTinh;
+        this->tenItem = other.tenItem;
         this->csdl = new BangBit(*other.csdl);
     }
 
@@ -79,7 +92,7 @@ namespace NguyenQuocHuy {
         this->soTransaction = other.soTransaction;
         this->minSup = other.minSup;
         this->minConf = other.minConf;
-        this->tenThuocTinh = other.tenThuocTinh;
+        this->tenItem = other.tenItem;
         this->csdl = new BangBit(*other.csdl);
     }
 
@@ -87,5 +100,40 @@ namespace NguyenQuocHuy {
         delete this->csdl;
 	}
 
+
+    std::vector< std::vector<std::string> > CSDLNhiPhan::thuatToanApriori() {
+        std::vector< std::vector<int> > tapPhoBien;
+        std::vector<int> itemPhoBien;
+        for (int i = 0; i < this->soItem; ++i) {
+            std::vector<int> item;
+            item.push_back(i);
+            if (this->kiemTraSuPhoBien(item)) {
+                itemPhoBien.push_back(i);
+                tapPhoBien.push_back(item);
+            }
+        }
+        int linhCanh = tapPhoBien.size();
+
+        for (int kichThuoc = 2, dauMang = 0, cuoiMang = linhCanh; 
+                dauMang < cuoiMang && kichThuoc <= this->soItem; 
+                    ++kichThuoc) {
+            for (int i = dauMang; i < cuoiMang; ++i) 
+                for (int j = 0; j < linhCanh; ++j) 
+                    if (tapPhoBien[i][tapPhoBien[i].size()-1] < itemPhoBien[j]) {
+                        std::vector<int> item_set = tapPhoBien[i];
+                        item_set.push_back(itemPhoBien[j]);
+                        if (this->kiemTraSuPhoBien(item_set)) 
+                            tapPhoBien.push_back(item_set);
+                    }
+            dauMang = cuoiMang;
+            cuoiMang = tapPhoBien.size();
+        }
+        std::vector< std::vector<std::string> > ketQua;
+        for (int i = 0, sz = tapPhoBien.size(); i < sz; ++i) 
+            ketQua.push_back(layDanhSachTen(tapPhoBien[i]));
+        return ketQua;
+    }
+
     /*  ----------------------------------------  */
+
 };

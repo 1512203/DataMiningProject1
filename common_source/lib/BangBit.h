@@ -31,8 +31,9 @@ namespace NguyenQuocHuy {
 
         int layO(int dong, int cot) const;
         void ganO(int dong, int cot, int giaTri);
+        int demSoBit1() const;
 
-        BangBit layANDCuaCacDong(int slDong, int* danhSachDong); 
+        BangBit layANDCuaCacDong(int slDong, const int* danhSachDong); 
 
         void operator = (const BangBit &other);
 

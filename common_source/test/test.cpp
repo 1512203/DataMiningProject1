@@ -1,8 +1,12 @@
 #include <cstdio>
-#include <cstdlib>
-#include <ctime>
+#include <vector>
+#include <string>
+
 #include "../lib/BangBit.h"
 #include "../lib/CSDLNhiPhan.h"
+
+#define DATA_FILE_NAME "data.csv"
+#define METADATA_FILE_NAME "meta-data.txt"
 
 void printBM(const NguyenQuocHuy::BangBit &bm) {
     for (int i = 0; i < bm.laySoDong(); ++i) {
@@ -16,7 +20,14 @@ void printBM(const NguyenQuocHuy::BangBit &bm) {
 
 int main() {
     using namespace NguyenQuocHuy;
-    CSDLNhiPhan trans("data.csv", "meta-data.txt");
-    printBM(*trans.csdl);
+    using namespace std;
+    CSDLNhiPhan D(DATA_FILE_NAME, METADATA_FILE_NAME);
+    vector< vector<string> > res = D.thuatToanApriori();
+    for (int i = 0, sz = res.size(); i < sz; ++i) {
+        for (int j = 0, sz_j = res[i].size(); j < sz_j; ++j) {
+            printf("%s,", res[i][j].c_str());
+        }
+        puts("");
+    }
     return 0;
 }
