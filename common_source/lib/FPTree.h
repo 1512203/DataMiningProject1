@@ -1,15 +1,29 @@
 #ifndef FPTREE_INCLUDED
 #define FPTREE_INCLUDED
 
-#include "BangBit.h"
+#include "MiningAbstractClass.h"
+#include "FPTree_Support.h"
+#include <string>
+#include <vector>
 
 namespace NguyenQuocHuy {
-    class FPTree {
+    class FPTree: MiningAbstractClass {
     private:
     protected:
-        BangBit* csdl;
+        bool kiemTraSuPhoBien(const std::vector<int> &danhSachItem) const;
+        void sapXepItem();
+
+        int* doPhoBien;
+        int* danhSachItemSauSapXep;
     public:
-        FPTree(BangBit* coSoDuLieu);
+        FPTree(const std::string &dataFileName, const std::string &metaDataFileName);
+        FPTree(const FPTree &other);
+        void operator = (const FPTree &other);
+
+        std::vector< std::vector<std::string> > mining();
+
+        ~FPTree();
+
     };
 }
 

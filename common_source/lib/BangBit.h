@@ -15,7 +15,6 @@ namespace NguyenQuocHuy {
         static void ganMotBitChoMotPhanTuCuaMang(tblock* mang, int chiSoPhanTu, int chiSoBit, int giaTri);
         static void ANDMangVoiMang(tblock* mang_1, const tblock* mang_2, int slPhanTu);
 
-    protected:
         int soDong;
         int soCot;
         int soByteMotDong;
@@ -25,6 +24,7 @@ namespace NguyenQuocHuy {
     public:
         BangBit(int slDong, int slCot);
         BangBit(const BangBit &other);
+        void operator = (const BangBit &other);
         
         int laySoDong() const;
         int laySoCot() const;
@@ -34,8 +34,6 @@ namespace NguyenQuocHuy {
         int demSoBit1() const;
 
         BangBit layANDCuaCacDong(int slDong, const int* danhSachDong); 
-
-        void operator = (const BangBit &other);
 
         ~BangBit();
     };

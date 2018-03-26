@@ -1,4 +1,4 @@
-#include "CSDLNhiPhan.h"
+#include "Apriori.h"
 #include <new>
 #include <string>
 #include <vector>
@@ -7,57 +7,12 @@
 #include <fstream>
 
 namespace NguyenQuocHuy {
-    /*  ---------- Static methods ---------- */
 
-    std::vector<std::string> CSDLNhiPhan::tachChuoiDungDelimiter(std::string s, char delim) {
-        std::vector<std::string> ketQua;
-        std::string token = "";
-        
-        s += delim;
-        
-        for (int i = 0, n = s.length(); i < n; ++i) 
-            if (s[i] == delim) {
-                if (token.length() > 0) 
-                    ketQua.push_back(token);
-                token = "";
-            }
-            else 
-                token += s[i];
-        return ketQua;
-    }
-
-    /*  ------------------------------------ */
+    /*  ---------- Non-static members ----------  */
 
 
-    /*  ---------- Non-static methods ----------  */
 
-    void CSDLNhiPhan::docMetaData(const char* metaDataFileName) {
-        std::ifstream fi(metaDataFileName, std::ifstream::in);
-        fi >> this->soTransaction >> this->soItem >> this->minSup >> this->minConf;
-        this->csdl = new BangBit(this->soItem, this->soTransaction);
-        fi.close();
-    }
-
-    void CSDLNhiPhan::docData(const char* dataFileName) {
-        std::ifstream fi(dataFileName, std::ifstream::in);
-        std::string buff = "";
-        std::vector<std::string> motTransaction;
-
-        std::getline(fi, buff);
-        this->tenItem = tachChuoiDungDelimiter(buff, ',');
-
-        for (int tid = 0; tid < this->soTransaction; ++tid) {
-            std::getline(fi, buff);
-            motTransaction = tachChuoiDungDelimiter(buff, ',');
-            for (int iid = 0; iid < this->soItem; ++iid) 
-                if (motTransaction[iid].length() > 0) 
-                    this->csdl->ganO(iid, tid, motTransaction[iid][0]-'0');
-        }
-
-        fi.close();
-    }
-
-    bool CSDLNhiPhan::kiemTraSuPhoBien(const std::vector<int> &danhSachItem) const {
+    bool Apriori::kiemTraSuPhoBien(const std::vector<int> &danhSachItem) const {
         int soTransactionChuaDanhSachItem = this
                                             ->csdl
                                             ->layANDCuaCacDong(danhSachItem.size(), danhSachItem.data())
@@ -65,19 +20,12 @@ namespace NguyenQuocHuy {
         return soTransactionChuaDanhSachItem >= (this->minSup / 100.0) * this->soTransaction;
     }
 
-    CSDLNhiPhan::CSDLNhiPhan(const std::string &dataFileName, const std::string &metaDataFileName) {
+    Apriori::Apriori(const std::string &dataFileName, const std::string &metaDataFileName) {
         this->docMetaData(metaDataFileName.c_str());
         this->docData(dataFileName.c_str());
     }
 
-    std::vector<std::string> CSDLNhiPhan::layDanhSachTen(const std::vector<int> &danhSachItem) const {
-        std::vector<std::string> ketQua;
-        for (int i = 0, sz = danhSachItem.size(); i < sz; ++i)
-            ketQua.push_back(this->tenItem[danhSachItem[i]]);
-        return ketQua;
-    }
-
-    CSDLNhiPhan::CSDLNhiPhan(const CSDLNhiPhan &other) {
+    Apriori::Apriori(const Apriori &other) {
         this->soItem = other.soItem;
         this->soTransaction = other.soTransaction;
         this->minSup = other.minSup;
@@ -86,7 +34,7 @@ namespace NguyenQuocHuy {
         this->csdl = new BangBit(*other.csdl);
     }
 
-    void CSDLNhiPhan::operator = (const CSDLNhiPhan &other) {
+    void Apriori::operator = (const Apriori &other) {
         delete this->csdl;
         this->soItem = other.soItem;
         this->soTransaction = other.soTransaction;
@@ -96,12 +44,12 @@ namespace NguyenQuocHuy {
         this->csdl = new BangBit(*other.csdl);
     }
 
-    CSDLNhiPhan::~CSDLNhiPhan() {
+    Apriori::~Apriori() {
         delete this->csdl;
     }
 
 
-    std::vector< std::vector<std::string> > CSDLNhiPhan::thuatToanApriori() {
+    std::vector< std::vector<std::string> > Apriori::mining() {
         std::vector< std::vector<int> > tapPhoBien;
         std::vector<int> itemPhoBien;
         for (int i = 0; i < this->soItem; ++i) {
