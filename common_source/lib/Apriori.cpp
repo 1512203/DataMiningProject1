@@ -35,13 +35,14 @@ namespace NguyenQuocHuy {
     }
 
     void Apriori::operator = (const Apriori &other) {
-        delete this->csdl;
+        BangBit* temp = this->csdl;
         this->soItem = other.soItem;
         this->soTransaction = other.soTransaction;
         this->minSup = other.minSup;
         this->minConf = other.minConf;
         this->tenItem = other.tenItem;
         this->csdl = new BangBit(*other.csdl);
+        delete temp;
     }
 
     Apriori::~Apriori() {

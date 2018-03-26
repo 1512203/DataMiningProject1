@@ -14,8 +14,6 @@ namespace NguyenQuocHuy {
         void docData(const char* dataFileName);
         std::vector<std::string> layDanhSachTen(const std::vector<int> &danhSachItem) const; 
 
-        virtual bool kiemTraSuPhoBien(const std::vector<int> &danhSachItem) const = 0;
-
         int soItem;
         int soTransaction;
         double minSup;

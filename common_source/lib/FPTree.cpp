@@ -4,10 +4,6 @@
 namespace NguyenQuocHuy {
     /*  ---------- Non-staic members ----------  */
 
-    bool FPTree::kiemTraSuPhoBien(const std::vector<int> &danhSachItem) const {
-        return false;
-    }
-
     void FPTree::sapXepItem() {
         this->doPhoBien = new int[this->soItem];
         this->danhSachItemSauSapXep = new int[this->soItem];

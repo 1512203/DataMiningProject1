@@ -69,13 +69,14 @@ namespace NguyenQuocHuy {
     }
 
     void BangBit::operator = (const BangBit &other) {
-        delete[] this->duLieu;
+        tblock* temp = this->duLieu;
         this->soDong = other.soDong;
         this->soCot = other.soCot;
         this->soByteMotDong = other.soByteMotDong;
         this->soByteChoBang = other.soByteChoBang;
         this->duLieu = new tblock[ this->soByteChoBang ];
         memcpy(this->duLieu, other.duLieu, this->soByteChoBang * sizeof(tblock));
+        delete[] temp;
     }
 
     int BangBit::laySoDong() const {

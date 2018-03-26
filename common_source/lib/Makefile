@@ -1,22 +1,22 @@
 CC=g++
 CFLAGS=-c -Wall -O2 -std=gnu++11
 
-all: BangBit.o MiningAbstractClass.o Apriori.o 
+all: BangBit.o MiningAbstractClass.o Apriori.o FPTree_Support.o
 	
 
 BangBit.o: BangBit.cpp BangBit.h
 	$(CC) $(CFLAGS) BangBit.cpp
 
-Apriori.o: Apriori.cpp Apriori.h 
+Apriori.o: Apriori.cpp Apriori.h MiningAbstractClass.o
 	$(CC) $(CFLAGS) Apriori.cpp 
 
 # FPTree.o: FPTree.cpp FPTree.h
 #	$(CC) $(CFLAGS) FPTree.cpp
-#
-# FPTree_Support.o: FPTree_Support.cpp FPTree_Support.h
-#	$(CC) $(CFLAGS) FPTree_Support.cpp
 
-MiningAbstractClass.o: MiningAbstractClass.cpp MiningAbstractClass.h
+FPTree_Support.o: FPTree_Support.cpp FPTree_Support.h 
+	$(CC) $(CFLAGS) FPTree_Support.cpp
+
+MiningAbstractClass.o: MiningAbstractClass.cpp MiningAbstractClass.h BangBit.o
 	$(CC) $(CFLAGS) MiningAbstractClass.cpp
 
 clean:

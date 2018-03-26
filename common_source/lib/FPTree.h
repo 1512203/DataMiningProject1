@@ -10,7 +10,6 @@ namespace NguyenQuocHuy {
     class FPTree: MiningAbstractClass {
     private:
     protected:
-        bool kiemTraSuPhoBien(const std::vector<int> &danhSachItem) const;
         void sapXepItem();
 
         int* doPhoBien;

@@ -3,36 +3,36 @@
 
 #include <vector>
 #include <cstdio>
-#include <algorithm>
 
 namespace NguyenQuocHuy {
-    //  Dung de sap xep item
-    struct Compare {
-        int* sortKey;
-
-        Compare(int* key) { 
-            sortKey = key; 
-        }
-
-        bool operator() (const int &x, const int &y) const {
-            return sortKey[x] < sortKey[y];
-        }
-    };
-
-    void sapXepMotMangTheoMotKhoa(int soPhanTu, int* mangMuonXep, int* mangKhoa); 
-
-    //  Luu cay FP
+    typedef struct FPTreeNode FPTreeNode;
+    typedef FPTreeNode* FPTreePNode;
     struct FPTreeNode {
         int itemID;
         int count;
-        std::vector<FPTreeNode*> listChildren;
+        int tempCount;
+        FPTreePNode parent;
+        std::vector<FPTreePNode> listChildren;
     };
 
-    typedef FPTreeNode* FPTreePNode;
+    class FPTreeOperationContainer {
+    private:
+        static FPTreePNode newFPTreeNode(int itemID, FPTreePNode parent = NULL);
 
-    FPTreePNode newFPTreeNode(int itemID, int count = 1); 
-    void insertTransaction(FPTreePNode root, const std::vector<int> &transaction); 
+        FPTreePNode findBranchToGo(FPTreePNode p, int itemID);
+        FPTreePNode makeNewConnection(int itemID, FPTreePNode p);
+
+        FPTreePNode root;
+        int nItems;
+        std::vector<FPTreePNode> *headList;
+    public:
+        FPTreeOperationContainer(int nItems);
+        void insertTransaction(const std::vector<int> &transaction);
+        ~FPTreeOperationContainer();
+    };
+
     void clearTree(FPTreePNode &p);
 }
 
 #endif
+
