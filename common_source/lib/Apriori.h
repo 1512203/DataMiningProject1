@@ -6,8 +6,11 @@
 
 namespace NguyenQuocHuy {
     class Apriori: MiningAbstractClass {
-    private:
     protected:
+        std::vector<int> joinTwoItemsets(const std::vector<int> &x, const std::vector<int> &y) const;
+        bool hasInfrequentSubset(const std::vector<int> &itemset, const std::vector< std::vector<int> > &L) const;
+        std::vector< std::vector<int> > AprioriGen(const std::vector< std::vector<int> > &L) const;
+
         bool kiemTraSuPhoBien(const std::vector<int> &danhSachItem) const;
 
     public:
