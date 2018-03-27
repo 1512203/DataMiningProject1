@@ -11,6 +11,7 @@ namespace NguyenQuocHuy {
         int itemID;
         int count;
         int tempCount;
+        bool isBlocked;
         FPTreePNode parent;
         std::vector<FPTreePNode> listChildren;
     };
@@ -21,6 +22,7 @@ namespace NguyenQuocHuy {
 
         FPTreePNode findBranchToGo(FPTreePNode p, int itemID);
         FPTreePNode makeNewConnection(int itemID, FPTreePNode p);
+        void unblockConditionalFPTree(int itemID);
 
         FPTreePNode root;
         int nItems;
@@ -28,6 +30,7 @@ namespace NguyenQuocHuy {
     public:
         FPTreeOperationContainer(int nItems);
         void insertTransaction(const std::vector<int> &transaction);
+        std::vector< std::vector<int> > conditionalFPSet(int itemID, double threshold);
         ~FPTreeOperationContainer();
     };
 

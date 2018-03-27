@@ -1,15 +1,20 @@
 #include "FPTree_Support.h"
 
 namespace NguyenQuocHuy {
+    /* ---------- Static members ----------  */
+
     FPTreePNode FPTreeOperationContainer::newFPTreeNode(int itemID, FPTreePNode parent) {
         FPTreePNode p = new FPTreeNode();
         p->itemID = itemID;
         p->count = 0;
         p->tempCount = 0;
+        p->isBlocked = true;
         p->parent = parent;
         p->listChildren.clear();
         return p;
     }
+
+    /* ------------------------------------  */
 
     FPTreeOperationContainer::FPTreeOperationContainer(int _nItems) {
         this->root = newFPTreeNode(-1, NULL);
@@ -40,12 +45,31 @@ namespace NguyenQuocHuy {
     void FPTreeOperationContainer::insertTransaction(const std::vector<int> &transaction) {
         FPTreePNode p = this->root;
         for (int i = 0, sz = transaction.size(); i < sz; ++i) {
-            FPTreePNode newNode = findBranchToGo(p, transaction[i]);
-
-            this->headList[transaction[i]][0]++;
-
+            FPTreePNode newNode = this->findBranchToGo(p, transaction[i]);
+            this->headList[transaction[i]][0]->count++;
             p = newNode;
         }
+    }
+
+    void FPTreeOperationContainer::unblockConditionalFPTree(int itemID) {
+        for (int i = 1, sz = this->headList[itemID].size(); i < sz; ++i) {
+            int freq = this->headList[itemID][i]->count;
+            FPTreePNode p = this->headList[itemID][i];
+            FPTreePNode q = p->parent;
+
+            do {
+                p->isBlocked = false;
+                p->tempCount += freq;
+                p = q;
+                q = q->parent;
+            } while (p == this->root);
+        }
+    }
+
+    std::vector< std::vector<int> > FPTreeOperationContainer::conditionalFPSet(int itemID, double threshold) {
+        std::vector< std::vector<int> > result;
+        this->unblockConditionalFPTree(itemID);
+        return result;
     }
 
     void clearTree(FPTreePNode &p) {
@@ -54,4 +78,5 @@ namespace NguyenQuocHuy {
         p->listChildren.clear();
         delete p;
     }
+
 }
