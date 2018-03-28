@@ -1,4 +1,5 @@
 #include "FPTree.h"
+#include "Sorting_Support.h"
 #include <cstring>
 
 namespace NguyenQuocHuy {
@@ -51,7 +52,11 @@ namespace NguyenQuocHuy {
     }
 
     std::vector< std::vector<std::string> > FPTree::mining() {
+        std::vector< std::vector<int> > tapPhoBien = FPTreeOperationContainer(this->soItem, this->danhSachItemSauSapXep).findConditionalFrequentSet(this->soTransaction * this->minSup);
+
         std::vector< std::vector<std::string> > ketQua;
+        for (int i = 0, sz = tapPhoBien.size(); i < sz; ++i)
+            ketQua.push_back(this->layDanhSachTen(tapPhoBien[i]));
         return ketQua;
     }
 

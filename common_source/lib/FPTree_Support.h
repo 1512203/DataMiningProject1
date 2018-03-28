@@ -22,15 +22,17 @@ namespace NguyenQuocHuy {
 
         FPTreePNode findBranchToGo(FPTreePNode p, int itemID);
         FPTreePNode makeNewConnection(int itemID, FPTreePNode p);
-        void unblockConditionalFPTree(int itemID);
+        FPTreeOperationContainer unblockConditionalFPTree(int itemID);
 
         FPTreePNode root;
-        int nItems;
+        int nItems, nTransactions;
+        int *itemOrdered;
         std::vector<FPTreePNode> *headList;
     public:
-        FPTreeOperationContainer(int nItems);
-        void insertTransaction(const std::vector<int> &transaction);
-        std::vector< std::vector<int> > conditionalFPSet(int itemID, double threshold);
+        FPTreeOperationContainer(int _nItems, int* _itemOrdered);
+
+        void insertTransaction(const std::vector<int> &transaction, int freq = 1);
+        std::vector< std::vector<int> > findConditionalFrequentSet(double threshold);
         ~FPTreeOperationContainer();
     };
 

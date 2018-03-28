@@ -7,8 +7,8 @@ all: test
 test.o: test.cpp
 	$(CC) $(CFLAGS) test.cpp 
 
-test: test.o ../lib/BangBit.o ../lib/Apriori.o ../lib/MiningAbstractClass.o
-	$(CC) test.o ../lib/BangBit.o ../lib/Apriori.o ../lib/MiningAbstractClass.o -o test
+test: test.o ../lib/BangBit.o ../lib/FPTree.o ../lib/MiningAbstractClass.o ../lib/Sorting_Support.o ../lib/FPTree_Support.o
+	$(CC) test.o ../lib/BangBit.o ../lib/FPTree.o ../lib/MiningAbstractClass.o ../lib/Sorting_Support.o ../lib/FPTree_Support.o -o test
 
 clean:
 	rm -rf *.o

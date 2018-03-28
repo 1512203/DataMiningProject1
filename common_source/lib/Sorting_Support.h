@@ -1,5 +1,6 @@
 #ifndef SORTING_SUPPORT_INCLUDED
 #define SORTING_SUPPORT_INCLUDED
+#include <vector>
 
 namespace NguyenQuocHuy {
     struct CompareKeyDecreasing {
@@ -15,5 +16,6 @@ namespace NguyenQuocHuy {
     };
 
     void sapXepMotMangTheoMotKhoa(int soPhanTu, int* mangMuonXep, int* mangKhoa); 
+    void sapXepMotMangTheoMotKhoa(std::vector<int> &mangMuonXep, int* mangKhoa);
 }
 #endif

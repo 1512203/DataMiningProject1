@@ -3,7 +3,7 @@
 #include <string>
 
 #include "../lib/BangBit.h"
-#include "../lib/Apriori.h"
+#include "../lib/FPTree.h"
 
 #define DATA_FILE_NAME "data.csv"
 #define METADATA_FILE_NAME "meta-data.txt"
@@ -12,7 +12,7 @@
 int main() {
     using namespace NguyenQuocHuy;
     using namespace std;
-    Apriori D(DATA_FILE_NAME, METADATA_FILE_NAME);
+    FPTree D(DATA_FILE_NAME, METADATA_FILE_NAME);
     vector< vector<string> > res = D.mining();
 
     FILE* fo = fopen(OUTPUT_FILE_NAME, "w");
