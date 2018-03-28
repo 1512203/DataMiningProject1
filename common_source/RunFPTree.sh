@@ -1,3 +1,3 @@
 cd test
-./test
+./MiningUsingFPTree
 cat result.txt
