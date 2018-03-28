@@ -24,9 +24,6 @@ namespace NguyenQuocHuy {
         this->headList = new std::vector<FPTreePNode>[_nItems];
         this->itemOrdered = new int[this->nItems];
         memcpy(this->itemOrdered, _itemOrdered, sizeof(int) * this->nItems);
-        for (int i = 0; i < _nItems; ++i)
-            printf("%d ", this->itemOrdered[i]);
-        puts("");
     }
 
     FPTreeOperationContainer::~FPTreeOperationContainer() {
@@ -67,7 +64,7 @@ namespace NguyenQuocHuy {
         this->nTransactions += freq;
     }
 
-    FPTreeOperationContainer FPTreeOperationContainer::unblockConditionalFPTree(int itemID) {
+    FPTreeOperationContainer* FPTreeOperationContainer::unblockConditionalFPTree(int itemID) {
         int* count = new int[this->nItems];
         memset(count, 0, sizeof(int) * this->nItems);
         for (int i = 0, sz = this->headList[itemID].size(); i < sz; ++i) {
@@ -83,7 +80,7 @@ namespace NguyenQuocHuy {
             itemList[i] = i;
         sapXepMotMangTheoMotKhoa(this->nItems, itemList, count);
 
-        FPTreeOperationContainer result(this->nItems, itemList);
+        FPTreeOperationContainer* result = new FPTreeOperationContainer(this->nItems, itemList);
 
         for (int i = 0, sz = this->headList[itemID].size(); i < sz; ++i) {
             FPTreePNode p = this->headList[itemID][i];
@@ -93,11 +90,7 @@ namespace NguyenQuocHuy {
             for (FPTreePNode q = p->parent; q != this->root; q = q->parent) 
                 transaction.push_back(q->itemID);
             sapXepMotMangTheoMotKhoa(transaction, count);
-            for (int j = 0, sz_t = transaction.size(); j < sz_t; ++j) {
-                printf("%d ", transaction[j]);
-            }
-            puts("\n###***###\n");
-            result.insertTransaction(transaction, freq);
+            result->insertTransaction(transaction, freq);
         }
 
         delete[] itemList;
@@ -109,16 +102,18 @@ namespace NguyenQuocHuy {
         std::vector< std::vector<int> > result;
         for (int i = this->nItems-1; i >= 0; --i) {
             int item = this->itemOrdered[i];
-            printf("## %d\n", item);
-            FPTreeOperationContainer conditionalFPTree = this->unblockConditionalFPTree(item);
-            printf("*** %d\n", conditionalFPTree.nTransactions);
-            if (conditionalFPTree.nTransactions < threshold) 
-                break;
-
-            std::vector< std::vector<int> > subRes = conditionalFPTree.findConditionalFrequentSet(threshold);
+            FPTreeOperationContainer* conditionalFPTree = this->unblockConditionalFPTree(item);
+            if (conditionalFPTree->nTransactions < threshold) {
+                delete conditionalFPTree;
+                continue;
+            }
+            std::vector< std::vector<int> > subRes = conditionalFPTree->findConditionalFrequentSet(threshold);
+            std::vector<int> lonelyRes;
+            subRes.push_back(lonelyRes);
             for (int j = 0, sz = subRes.size(); j < sz; ++j) 
                 subRes[j].push_back(item);
             result.insert(result.end(), subRes.begin(), subRes.end());
+            delete conditionalFPTree;
         }
         return result;
     }

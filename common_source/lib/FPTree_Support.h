@@ -22,7 +22,7 @@ namespace NguyenQuocHuy {
 
         FPTreePNode findBranchToGo(FPTreePNode p, int itemID);
         FPTreePNode makeNewConnection(int itemID, FPTreePNode p);
-        FPTreeOperationContainer unblockConditionalFPTree(int itemID);
+        FPTreeOperationContainer* unblockConditionalFPTree(int itemID);
 
         FPTreePNode root;
         int nItems, nTransactions;

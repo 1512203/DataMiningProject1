@@ -52,7 +52,15 @@ namespace NguyenQuocHuy {
     }
 
     std::vector< std::vector<std::string> > FPTree::mining() {
-        std::vector< std::vector<int> > tapPhoBien = FPTreeOperationContainer(this->soItem, this->danhSachItemSauSapXep).findConditionalFrequentSet(this->soTransaction * this->minSup);
+        FPTreeOperationContainer fpTree(this->soItem, this->danhSachItemSauSapXep);
+        for (int i = 0; i < this->soTransaction; ++i) {
+            std::vector<int> transaction;
+            for (int j = 0; j < this->soItem; ++j) 
+                if (this->csdl->layO(this->danhSachItemSauSapXep[j], i))
+                    transaction.push_back(this->danhSachItemSauSapXep[j]);
+            fpTree.insertTransaction(transaction);
+        }
+        std::vector< std::vector<int> > tapPhoBien = fpTree.findConditionalFrequentSet(this->soTransaction * this->minSup / 100.0);
 
         std::vector< std::vector<std::string> > ketQua;
         for (int i = 0, sz = tapPhoBien.size(); i < sz; ++i)
