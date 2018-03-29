@@ -56,6 +56,6 @@ Các tập phổ biến sẽ đưọc xuất ra màn hình
 Dữ liệu đưọc tạo truớc và lưu trong 2 file _meta-data.txt_ và _data.csv_, trong đó:
 * _meta-data.txt_: Chứa 4 số lần luợt là: số item, số transaction, minSupport và minConfidence
 * _data.csv_: chứa các transaction: 
-    * dòng đầu là danh sách tên các item (phân biệt nhau bởi dấu ,)
-    * các dòng sau, mỗi dòng là một transaction, gồm các số 0 và 1, cách nhau bởi dấu ,
+    * dòng đầu là danh sách tên các item (phân biệt nhau bởi dấu ```,```)
+    * các dòng sau, mỗi dòng là một transaction, gồm các số 0 và 1, cách nhau bởi dấu ```,```
 
