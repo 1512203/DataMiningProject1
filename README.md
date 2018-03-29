@@ -4,10 +4,33 @@
 * Hỗ trợ g++ 5.4.0
 * Hỗ trợ Makefile
 ## Cấu trúc tập tin:
+```
 .
-+-- _README.md
-+-- _source
-|   +-- _lib
-|   +-- _test
+|-- README.md
+|-- source
+|   |-- lib
+|   |   |-- Apriori.cpp
+|   |   |-- Apriori.h
+|   |   |-- BangBit.cpp
+|   |   |-- BangBit.h
+|   |   |-- FPTree.cpp
+|   |   |-- FPTree.h
+|   |   |-- FPTree_Support.cpp
+|   |   |-- FPTree_Support.h
+|   |   |-- MiningAbstractClass.cpp
+|   |   |-- MiningAbstractClass.h
+|   |   |-- Sorting_Support.cpp
+|   |   |-- Sorting_Support.h
+|   |   |-- Makefile
+|   |-- test
+|   |   |-- data.csv
+|   |   |-- meta-data.txt
+|   |   |-- test_MiningUsingApriori.cpp
+|   |   |-- test_MiningUsingFPTree.cpp
+|   |   |-- Makefile
+|   |-- Makefile
+|   |-- RunApriori.sh
+|   |-- RunFPTree.sh
+```
 ## Huớng dẫn cách build:
 ## Huớng dẫn cách chạy:
