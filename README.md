@@ -5,10 +5,10 @@
 * Hỗ trợ Makefile
 ## Cấu trúc tập tin:
 ```
-.
+./
 |-- README.md
-|-- source
-|   |-- lib
+|-- source/
+|   |-- lib/
 |   |   |-- Apriori.cpp
 |   |   |-- Apriori.h
 |   |   |-- BangBit.cpp
@@ -22,7 +22,7 @@
 |   |   |-- Sorting_Support.cpp
 |   |   |-- Sorting_Support.h
 |   |   |-- Makefile
-|   |-- test
+|   |-- test/
 |   |   |-- data.csv
 |   |   |-- meta-data.txt
 |   |   |-- test_MiningUsingApriori.cpp
