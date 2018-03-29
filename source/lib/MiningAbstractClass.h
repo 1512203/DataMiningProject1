@@ -1,7 +1,7 @@
 #ifndef MININGABSTRACTCLASS_INCLUDED
 #define MININGABSTRACTCLASS_INCLUDED
 
-#include "BangBit.h"
+#include "BangBit/BangBit.h"
 #include <vector>
 #include <string>
 

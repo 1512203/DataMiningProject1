@@ -2,8 +2,7 @@
 #include <vector>
 #include <string>
 
-#include "../lib/BangBit.h"
-#include "../lib/FPTree.h"
+#include "../lib/FPTree/FPTree.h"
 
 #define DATA_FILE_NAME "data.csv"
 #define METADATA_FILE_NAME "meta-data.txt"

@@ -2,8 +2,7 @@
 #include <vector>
 #include <string>
 
-#include "../lib/BangBit.h"
-#include "../lib/Apriori.h"
+#include "../lib/Apriori/Apriori.h"
 
 #define DATA_FILE_NAME "data.csv"
 #define METADATA_FILE_NAME "meta-data.txt"

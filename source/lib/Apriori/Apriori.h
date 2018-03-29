@@ -1,6 +1,6 @@
 #ifndef APRIORI_INCLUDED 
 #define APRIORI_INCLUDED 
-#include "MiningAbstractClass.h"
+#include "../MiningAbstractClass.h"
 #include <string>
 #include <vector>
 

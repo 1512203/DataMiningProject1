@@ -1,7 +1,7 @@
 #ifndef FPTREE_INCLUDED
 #define FPTREE_INCLUDED
 
-#include "MiningAbstractClass.h"
+#include "../MiningAbstractClass.h"
 #include "FPTree_Support.h"
 #include <string>
 #include <vector>
