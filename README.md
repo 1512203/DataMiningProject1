@@ -43,7 +43,7 @@ Trong terminal, __tại thư mục ./source của project__, chạy lệnh
 ```ShellScript
 make all
 ```
-### Chạy
+### Chạy:
 Trong terminal, __tại thư mục ./source của project__:
 * Để sinh tập phổ biến dùng thuật toán Apriori
 ```ShellScript
