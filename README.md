@@ -9,18 +9,21 @@
 |-- README.md
 |-- source/
 |   |-- lib/
-|   |   |-- Apriori.cpp
-|   |   |-- Apriori.h
-|   |   |-- BangBit.cpp
-|   |   |-- BangBit.h
-|   |   |-- FPTree.cpp
-|   |   |-- FPTree.h
-|   |   |-- FPTree_Support.cpp
-|   |   |-- FPTree_Support.h
+|   |   |-- BangBit
+|   |   |   |-- BangBit.cpp
+|   |   |   |-- BangBit.h
+|   |   |-- Apriori
+|   |   |   |-- Apriori.cpp
+|   |   |   |-- Apriori.h
+|   |   |-- FPTree
+|   |   |   |-- FPTree.cpp
+|   |   |   |-- FPTree.h
+|   |   |   |-- FPTree_Support.cpp
+|   |   |   |-- FPTree_Support.h
+|   |   |   |-- Sorting_Support.cpp
+|   |   |   |-- Sorting_Support.h
 |   |   |-- MiningAbstractClass.cpp
 |   |   |-- MiningAbstractClass.h
-|   |   |-- Sorting_Support.cpp
-|   |   |-- Sorting_Support.h
 |   |   |-- Makefile
 |   |-- test/
 |   |   |-- data.csv
@@ -33,4 +36,8 @@
 |   |-- RunFPTree.sh
 ```
 ## Huớng dẫn cách build:
+Tại thư mục gốc của project, chạy
+```ShellScript
+make all
+```
 ## Huớng dẫn cách chạy:
