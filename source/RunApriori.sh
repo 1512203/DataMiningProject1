@@ -1,3 +1,3 @@
 cd test
-./MiningUsingApriori
+./Apriori_res/MiningUsingApriori
 cat result.txt

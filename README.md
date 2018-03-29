@@ -25,15 +25,17 @@
 |   |   |-- MiningAbstractClass.cpp
 |   |   |-- MiningAbstractClass.h
 |   |   |-- Makefile
-|   |-- test/
-|   |   |-- data.csv
-|   |   |-- meta-data.txt
-|   |   |-- test_MiningUsingApriori.cpp
-|   |   |-- test_MiningUsingFPTree.cpp
+|   |-- Apriori_res/
+|   |   |-- MiningUsingApriori.cpp
 |   |   |-- Makefile
-|   |-- Makefile
+|   |-- FPTree_res/
+|   |   |-- MiningUsingFPTree.cpp
+|   |   |-- Makefile
+|   |-- meta-data.txt
+|   |-- data.csv
 |   |-- RunApriori.sh
 |   |-- RunFPTree.sh
+|   |-- Makefile
 ```
 ## Huớng dẫn cách chạy:
 ### Build:
