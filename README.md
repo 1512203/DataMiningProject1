@@ -35,9 +35,27 @@
 |   |-- RunApriori.sh
 |   |-- RunFPTree.sh
 ```
-## Huớng dẫn cách build:
-Tại thư mục gốc của project, chạy
+## Huớng dẫn cách chạy:
+### Build:
+Trong terminal, __tại thư mục ./source của project__, chạy lệnh
 ```ShellScript
 make all
 ```
-## Huớng dẫn cách chạy:
+### Chạy
+Trong terminal, __tại thư mục ./source của project__:
+* Để sinh tập phổ biến dùng thuật toán Apriori
+```ShellScript
+bash RunApriori.sh
+```
+* Để sinh tập phổ biến dùng FP-Tree
+```ShellScript
+bash RunFPTree.sh
+```
+Các tập phổ biến sẽ đưọc xuất ra màn hình
+## Bộ dữ liệu
+Dữ liệu đưọc tạo truớc và lưu trong 2 file _meta-data.txt_ và _data.csv_, trong đó:
+* _meta-data.txt_: Chứa 4 số lần luợt là: số item, số transaction, minSupport và minConfidence
+* _data.csv_: chứa các transaction: 
+    * dòng đầu là danh sách tên các item (phân biệt nhau bởi dấu ,)
+    * các dòng sau, mỗi dòng là một transaction, gồm các số 0 và 1, cách nhau bởi dấu ,
+
